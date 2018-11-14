@@ -16,7 +16,7 @@ starting_string_four = "HELPMESORTIT!"
 p encoded_string_one = rail_encode(starting_string_one)
 # p rail_decode(encoded_string_one)
 p rail_decode(encoded_string_one) == starting_string_one
-# p rail_decode(encoded_string_one) == starting_string_one
+p rail_decode(encoded_string_one) == starting_string_one
 # p decoded_string
 puts ""
 

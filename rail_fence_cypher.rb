@@ -44,7 +44,8 @@ def decode_zero(s, length)
   {line_one: line_one, line_two: line_two, line_three: line_three}
 end
 
-def sort_into_lines(s,length)
+def sort_into_lines(original_s,length)
+  s = original_s.dup
   return decode_zero(s, length) if length % 4 == 0
   return decode_two(s, length) if length % 4 == 2 || length % 4 == 1
   return decode_three(s, length) if length % 4 == 3
