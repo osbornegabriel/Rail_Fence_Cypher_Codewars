@@ -9,7 +9,7 @@ encoded_string = "WECRLTEERDSOEEFEAOCAIVDEN"
 
 # p encoded_string.length
 
-p starting_string_two = "HELPMESORTIT!"
+p starting_string_two = "HELPMESORTI"
 
 p encoded_string_two = rail_encode(starting_string_two)
 
@@ -27,10 +27,12 @@ H   M.  R
  E P E O T
   L   S.  I
 
+0,1,2  3,4,5,6,7  8,9,10
+
 H   M.  R
  E P E O T T
   L   S.  I
-0,3,9,4, 1,5,10,6  2,7,11,8
+0,3,9,4 1,5,10,6  2,7,11,8
 
 0,1,2
 3,4,5,6,7,8

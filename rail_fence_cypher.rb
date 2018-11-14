@@ -13,16 +13,25 @@ end
 
 def rail_decode(s)
   length = s.length
-  return decode_four(s, length) if length % 4 == 0
+  return decode_zero(s, length) if length % 4 == 0
   return decode_two(s, length) if length % 4 == 2 || length % 4 == 1
+  return decode_three(s, length) if length % 4 == 3
 end
 
+# For when the modulo 4 is 3
+def decode_three(s,length)
+  p lines = sort_into_lines_three(s,length)
+  combine_lines(lines,length)
+end
+
+# For when the modulo 4 is 2 or 1
 def decode_two(s, length)
   p lines = sort_into_lines_two(s,length)
   combine_lines(lines,length)
 end
 
-def decode_four(s, length)
+# For when modulo 4 is 0
+def decode_zero(s, length)
   p lines = sort_into_lines(s,length)
   combine_lines(lines,length)
 end
@@ -34,6 +43,14 @@ end
 #   line_three = line_two.slice!(-l_quarter,l_quarter)
 #   {line_one: line_one, line_two: line_two, line_three: line_three}
 # end
+
+def sort_into_lines_three(s,length)
+  l_quarter = length/4
+  line_one = s.slice!(0,l_quarter + 1)
+  line_two = s
+  line_three = line_two.slice!((-l_quarter -1),(l_quarter + 1))
+  {line_one: line_one, line_two: line_two, line_three: line_three}
+end
 
 def sort_into_lines_two(s,length)
   l_quarter = length/4
