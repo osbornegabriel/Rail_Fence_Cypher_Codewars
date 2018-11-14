@@ -8,12 +8,32 @@ encoded_string = "WECRLTEERDSOEEFEAOCAIVDEN"
 # p rail_encode(starting_string) == encoded_string
 
 # p encoded_string.length
+starting_string_one = "HELPMESORT"
+starting_string_two = "HELPMESORTI"
+starting_string_three = "HELPMESORTIT"
+starting_string_four = "HELPMESORTIT!"
 
-p starting_string_two = "HELPMESORTI"
+p encoded_string_one = rail_encode(starting_string_one)
+# p rail_decode(encoded_string_one)
+p rail_decode(encoded_string_one) == starting_string_one
+# p rail_decode(encoded_string_one) == starting_string_one
+# p decoded_string
+puts ""
 
 p encoded_string_two = rail_encode(starting_string_two)
+# p rail_decode(encoded_string_two)
+p rail_decode(encoded_string_two) == starting_string_two
+puts ""
 
-p rail_decode(encoded_string_two)
+encoded_string_three = rail_encode(starting_string_three)
+# p rail_decode(encoded_string_three)
+p rail_decode(encoded_string_three) == starting_string_three
+puts ""
+
+encoded_string_four = rail_encode(starting_string_four)
+# p rail_decode(encoded_string_four)
+p rail_decode(encoded_string_four) == starting_string_four
+
 =begin
 
 H   M.  R
