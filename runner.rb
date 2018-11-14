@@ -13,14 +13,16 @@ starting_string_two = "HELPMESORTI"
 starting_string_three = "HELPMESORTIT"
 starting_string_four = "HELPMESORTIT!"
 
-p encoded_string_one = rail_encode(starting_string_one)
+encoded_string_one = rail_encode(starting_string_one)
+p encoded_string_one == rail_encode(starting_string_one)
 # p rail_decode(encoded_string_one)
+p "Now to check the decode"
 p rail_decode(encoded_string_one) == starting_string_one
 p rail_decode(encoded_string_one) == starting_string_one
 # p decoded_string
 puts ""
 
-p encoded_string_two = rail_encode(starting_string_two)
+encoded_string_two = rail_encode(starting_string_two)
 # p rail_decode(encoded_string_two)
 p rail_decode(encoded_string_two) == starting_string_two
 puts ""

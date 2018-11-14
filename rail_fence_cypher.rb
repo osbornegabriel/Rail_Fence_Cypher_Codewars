@@ -17,48 +17,38 @@ def rail_decode(s)
   combine_lines(lines,length)
 end
 
-# For when the modulo 4 is 3
-def decode_three(s,length)
-  l_quarter = length/4
-  line_one = s.slice!(0,l_quarter + 1)
-  line_two = s
-  line_three = line_two.slice!((-l_quarter -1),(l_quarter + 1))
-  {line_one: line_one, line_two: line_two, line_three: line_three}
-end
+private
 
-# For when the modulo 4 is 2 or 1
-def decode_two(s, length)
-  l_quarter = length/4
-  line_one = s.slice!(0,l_quarter + 1)
-  line_two = s
-  line_three = line_two.slice!(-l_quarter,l_quarter)
-  {line_one: line_one, line_two: line_two, line_three: line_three}
-end
-
-# For when modulo 4 is 0
-def decode_zero(s, length)
-  l_quarter = length/4
-  line_one = s.slice!(0,l_quarter)
-  line_two = s
-  line_three = line_two.slice!(-l_quarter,l_quarter)
-  {line_one: line_one, line_two: line_two, line_three: line_three}
-end
-
-def sort_into_lines(original_s,length)
-  s = original_s.dup
-  return decode_zero(s, length) if length % 4 == 0
-  return decode_two(s, length) if length % 4 == 2 || length % 4 == 1
-  return decode_three(s, length) if length % 4 == 3
-end
-
-def combine_lines(lines, length)
-  # lines_reduce = lines.dup
-  decoded_s = ''
-  (length/4).times do
-    decoded_s << lines[:line_one].slice!(0)
-    decoded_s << lines[:line_two].slice!(0)
-    decoded_s << lines[:line_three].slice!(0)
-    decoded_s << lines[:line_two].slice!(0)
+  def create_line_one(s,length,l_quarter)
+    n = length % 4 != 0 ? 1:0
+    s.slice!(0, l_quarter + n)
   end
-  decoded_s + lines.values.reduce(:+)
-end
+
+  def create_line_two(s)
+    s
+  end
+
+  def create_line_three(s,length,l_quarter)
+    return s.slice!((-l_quarter -1),(l_quarter + 1)) if length % 4 == 3
+    s.slice!(-l_quarter,l_quarter)
+  end
+
+  def sort_into_lines(original_s,length)
+    s = original_s.dup
+    quarter = length/4
+    line_one = create_line_one(s,length,quarter)
+    line_two = create_line_two(s)
+    line_three = create_line_three(s,length,quarter)
+    {line_one: line_one, line_two: line_two, line_three: line_three}
+  end
+
+  def combine_lines(lines, length)
+    decoded_s = ''
+    (length/4).times do
+      decoded_s << lines[:line_one].slice!(0)
+      decoded_s << lines[:line_two].slice!(0)
+      decoded_s << lines[:line_three].slice!(0)
+      decoded_s << lines[:line_two].slice!(0)
+    end
+    decoded_s + lines.values.reduce(:+)
+  end
