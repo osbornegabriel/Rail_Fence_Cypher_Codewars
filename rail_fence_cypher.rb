@@ -17,14 +17,24 @@ def rail_decode(s)
 end
 
 def decode_four(s, length)
-  p lines = sort_lines(s,length)
-
+  p lines = sort_into_lines(s,length)
+  combine_lines(lines,length)
 end
 
-def sort_lines(s,length)
+def sort_into_lines(s,length)
   l_quarter = length/4
   line_one = s.slice!(0,l_quarter)
   line_two = s
   line_three = line_two.slice!(-l_quarter,l_quarter)
-  [line_one, line_two, line_three]
+  {line_one: line_one, line_two: line_two, line_three: line_three}
+end
+
+def combine_lines(lines, length)
+  decoded_s = ''
+  (length/4).times do
+    decoded_s << lines[:line_one].slice!(0)
+    decoded_s << lines[:line_two].slice!(0)
+    decoded_s << lines[:line_three].slice!(0)
+    decoded_s << lines[:line_two].slice!(0)
+  end
 end
