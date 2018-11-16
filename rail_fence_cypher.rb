@@ -29,6 +29,19 @@ def build_lines(phrase,rails,rail_indexes)
   rails
 end
 
+def rail_decode(s,rail_count)
+  phrase = s.dup
+  last_line = find_last_line(phrase,rail_count)
+end
+
+def find_last_line(s,rail_count)
+  length = s.length
+  one_sequence = ((rail_count-2) * 2) + 2
+  sequences = length / one_sequence
+  remainder = length % one_sequence
+  sequences += 1 if remainder > one_sequence / 2
+  s.slice!(-sequences..-1)
+end
 
 # def rail_encode(s)
 #   lines = {line_one: '', line_two: '', line_three: ''}

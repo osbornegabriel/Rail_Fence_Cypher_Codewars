@@ -15,7 +15,7 @@ starting_string_four = "HELPMESORTIT!"
 
 p encoded_string_one = rail_encode(starting_string_one,3)
 p encoded_string_one == rail_encode(starting_string_one,3)
-# p rail_decode(encoded_string_one)
+p rail_decode(encoded_string_one,3)
 # p "Now to check the decode"
 # p rail_decode(encoded_string_one) == starting_string_one
 # p rail_decode(encoded_string_one) == starting_string_one
@@ -23,17 +23,17 @@ p encoded_string_one == rail_encode(starting_string_one,3)
 puts ""
 
 p encoded_string_two = rail_encode(starting_string_two,3)
-# p rail_decode(encoded_string_two)
+p rail_decode(encoded_string_two,3)
 # p rail_decode(encoded_string_two) == starting_string_two
 puts ""
 
 p encoded_string_three = rail_encode(starting_string_three,3)
-# p rail_decode(encoded_string_three)
+p rail_decode(encoded_string_three,3)
 # p rail_decode(encoded_string_three) == starting_string_three
 puts ""
 
 p encoded_string_four = rail_encode(starting_string_four,3)
-# p rail_decode(encoded_string_four)
+p rail_decode(encoded_string_four,3)
 # p rail_decode(encoded_string_four) == starting_string_four
 
 =begin
