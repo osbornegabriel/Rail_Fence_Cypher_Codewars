@@ -5,14 +5,8 @@ def rail_encode(s,rail_count)
   phrase = s.dup
   rail_indexes = Array(0..(rail_count-1))
   rails = create_rails(rail_indexes)
-  middle_rail_indexes = rail_indexes[1..-2]
-  until phrase == ''
-    rails[0] << phrase.slice!(0).to_s
-    middle_rail_indexes.each{|i| rails[i] << phrase.slice!(0).to_s}
-    rails[rail_count - 1] << phrase.slice!(0).to_s
-    middle_rail_indexes.reverse.each{|i| rails[i] << phrase.slice!(0).to_s}
-  end
-  rails.values.reduce(:+)
+  lines = build_lines(phrase,rails,rail_indexes)
+  lines.values.reduce(:+)
 end
 
 def create_rails(rail_indexes)
@@ -21,6 +15,18 @@ def create_rails(rail_indexes)
     lines[i] = ''
   end
   lines
+end
+
+def build_lines(phrase,rails,rail_indexes)
+  middle_rail_indexes = rail_indexes[1..-2]
+  last_index = rail_indexes.last
+  until phrase == ''
+    rails[0] << phrase.slice!(0).to_s
+    middle_rail_indexes.each{|i| rails[i] << phrase.slice!(0).to_s}
+    rails[last_index] << phrase.slice!(0).to_s
+    middle_rail_indexes.reverse.each{|i| rails[i] << phrase.slice!(0).to_s}
+  end
+  rails
 end
 
 
