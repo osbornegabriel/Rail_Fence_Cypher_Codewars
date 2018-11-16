@@ -2,16 +2,27 @@
 # # encoded_string = "WECRLTEERDSOEEFEAOCAIVDEN"
 
 def rail_encode(s,rail_count)
-  rails = create_rails(rail_count)
+  phrase = s.dup
+  rail_indexes = Array(0..(rail_count-1))
+  rails = create_rails(rail_indexes)
+  middle_rail_indexes = rail_indexes[1..-2]
+  until phrase == ''
+    rails[0] << phrase.slice!(0).to_s
+    middle_rail_indexes.each{|i| rails[i] << phrase.slice!(0).to_s}
+    rails[rail_count - 1] << phrase.slice!(0).to_s
+    middle_rail_indexes.reverse.each{|i| rails[i] << phrase.slice!(0).to_s}
+  end
+  rails.values.reduce(:+)
 end
 
-def create_rails(rail_count)
+def create_rails(rail_indexes)
   lines = {}
-  rail_count.times do |i|
+  rail_indexes.each do |i|
     lines[i] = ''
   end
   lines
 end
+
 
 # def rail_encode(s)
 #   lines = {line_one: '', line_two: '', line_three: ''}
