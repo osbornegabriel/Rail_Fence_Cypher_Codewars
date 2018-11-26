@@ -32,6 +32,9 @@ end
 def rail_decode(s,rail_count)
   phrase = s.dup
   last_line = find_last_line(phrase,rail_count)
+  first_line = find_first_line(phrase,rail_count)
+  middle_line = phrase
+  [first_line, middle_line, last_line]
 end
 
 def find_last_line(s,rail_count)
@@ -41,6 +44,14 @@ def find_last_line(s,rail_count)
   remainder = length % one_sequence
   sequences += 1 if remainder > one_sequence / 2
   s.slice!(-sequences..-1)
+end
+
+def find_first_line(s, rail_count)
+  length = s.length
+  one_sequence = ((rail_count-2) * 2) + 1
+  sequences = length / one_sequence
+  sequences += 1 if length % one_sequence > 0
+  s.slice!(0,sequences)
 end
 
 # def rail_encode(s)

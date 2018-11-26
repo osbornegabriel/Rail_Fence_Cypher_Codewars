@@ -3,6 +3,11 @@ require_relative 'rail_fence_cypher.rb'
 starting_string = "WEAREDISCOVEREDFLEEATONCE"
 encoded_string = "WECRLTEERDSOEEFEAOCAIVDEN"
 
+p rail_encode(starting_string,3)
+p encoded_string == rail_encode(starting_string,3)
+p rail_decode(encoded_string,3)
+p ''
+
 # p starting_string
 # p rail_encode(starting_string)
 # p rail_encode(starting_string) == encoded_string
