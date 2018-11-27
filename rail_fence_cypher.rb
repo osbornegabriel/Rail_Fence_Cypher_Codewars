@@ -21,16 +21,20 @@ def create_rails(rail_indexes)
   lines
 end
 
-def build_lines(phrase,rails,rail_indexes)
+def build_lines(s,rails,rail_indexes)
   middle_rail_indexes = rail_indexes[1..-2]
   last_index = rail_indexes.last
-  until phrase == ''
-    rails[0] << phrase.slice!(0).to_s
-    middle_rail_indexes.each{|i| rails[i] << phrase.slice!(0).to_s}
-    rails[last_index] << phrase.slice!(0).to_s
-    middle_rail_indexes.reverse.each{|i| rails[i] << phrase.slice!(0).to_s}
+  until s == ''
+    slice_to_rail(rails[0],s)
+    middle_rail_indexes.each{|i| slice_to_rail(rails[i],s)}
+    slice_to_rail(rails[last_index],s)
+    middle_rail_indexes.reverse.each{|i| slice_to_rail(rails[i],s)}
   end
   rails
+end
+
+def slice_to_rail(rail,s)
+  rail << s.slice!(0).to_s
 end
 
 ########################
@@ -45,10 +49,10 @@ end
 
 def assemble_lines(lines)
   decoded_s = ''
-  lines[:first_line].size.times do |i|
+  lines[:first_line].size.times do
     decoded_s += lines[:first_line].slice!(0)
     decoded_s += slice_mid_lines(lines[:middle_lines])
-    decoded_s += lines[:last_line].slice!(0) || ''
+    decoded_s += lines[:last_line].slice!(0).to_s
     decoded_s += slice_mid_lines_rev(lines[:middle_lines])
   end
   decoded_s
@@ -56,7 +60,7 @@ end
 
 def slice_mid_lines(middle_lines)
   letters = ''
-  middle_lines.each{|line| letters += line.slice!(0) || ''}
+  middle_lines.each{|line| letters += line.slice!(0).to_s}
   letters
 end
 
@@ -64,12 +68,27 @@ def slice_mid_lines_rev(middle_lines)
   slice_mid_lines(middle_lines.reverse)
 end
 
-def find_lines(s,rail_count)
-  phrase = s.dup
+def find_lines(phrase,rail_count)
   last_line = find_last_line(phrase,rail_count)
   first_line = find_first_line(phrase,rail_count)
   middle_lines = find_middle_lines(phrase,rail_count-2)
   {first_line: first_line, middle_lines: middle_lines, last_line: last_line}
+end
+
+def find_last_line(s,rail_count)
+  one_sequence = ((rail_count-2) * 2) + 2
+  sequences = s.length / one_sequence
+  remainder = s.length % one_sequence
+  sequences += 1 if remainder > one_sequence / 2
+  s.slice!(-sequences..-1)
+end
+
+def find_first_line(s, rail_count)
+  length = s.length
+  one_sequence = ((rail_count-2) * 2) + 1
+  sequences = length / one_sequence
+  sequences += 1 if length % one_sequence > 0
+  s.slice!(0,sequences)
 end
 
 def find_middle_lines(s,number_of_lines)
@@ -98,21 +117,4 @@ def divide_middle_lines(s,number_of_lines,extra_letters_count,slice_size)
     end
   end
   middle_lines
-end
-
-def find_last_line(s,rail_count)
-  length = s.length
-  one_sequence = ((rail_count-2) * 2) + 2
-  sequences = length / one_sequence
-  remainder = length % one_sequence
-  sequences += 1 if remainder > one_sequence / 2
-  s.slice!(-sequences..-1)
-end
-
-def find_first_line(s, rail_count)
-  length = s.length
-  one_sequence = ((rail_count-2) * 2) + 1
-  sequences = length / one_sequence
-  sequences += 1 if length % one_sequence > 0
-  s.slice!(0,sequences)
 end
