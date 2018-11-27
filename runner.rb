@@ -3,6 +3,11 @@ require_relative 'rail_fence_cypher.rb'
 starting_string = "WEAREDISCOVEREDFLEEATONCE"
 encoded_string = "WECRLTEERDSOEEFEAOCAIVDEN"
 
+p rail_encode(starting_string,3)
+p encoded_string == rail_encode(starting_string,3)
+p rail_decode(encoded_string,3)
+p ''
+
 # p starting_string
 # p rail_encode(starting_string)
 # p rail_encode(starting_string) == encoded_string
@@ -13,28 +18,28 @@ starting_string_two = "HELPMESORTI"
 starting_string_three = "HELPMESORTIT"
 starting_string_four = "HELPMESORTIT!"
 
-encoded_string_one = rail_encode(starting_string_one)
-p encoded_string_one == rail_encode(starting_string_one)
-# p rail_decode(encoded_string_one)
-p "Now to check the decode"
-p rail_decode(encoded_string_one) == starting_string_one
-p rail_decode(encoded_string_one) == starting_string_one
+p encoded_string_one = rail_encode(starting_string_one,3)
+p encoded_string_one == rail_encode(starting_string_one,3)
+p rail_decode(encoded_string_one,3)
+# p "Now to check the decode"
+# p rail_decode(encoded_string_one) == starting_string_one
+# p rail_decode(encoded_string_one) == starting_string_one
 # p decoded_string
 puts ""
 
-encoded_string_two = rail_encode(starting_string_two)
-# p rail_decode(encoded_string_two)
-p rail_decode(encoded_string_two) == starting_string_two
+p encoded_string_two = rail_encode(starting_string_two,3)
+p rail_decode(encoded_string_two,3)
+# p rail_decode(encoded_string_two) == starting_string_two
 puts ""
 
-encoded_string_three = rail_encode(starting_string_three)
-# p rail_decode(encoded_string_three)
-p rail_decode(encoded_string_three) == starting_string_three
+p encoded_string_three = rail_encode(starting_string_three,3)
+p rail_decode(encoded_string_three,3)
+# p rail_decode(encoded_string_three) == starting_string_three
 puts ""
 
-encoded_string_four = rail_encode(starting_string_four)
-# p rail_decode(encoded_string_four)
-p rail_decode(encoded_string_four) == starting_string_four
+p encoded_string_four = rail_encode(starting_string_four,3)
+p rail_decode(encoded_string_four,3)
+# p rail_decode(encoded_string_four) == starting_string_four
 
 =begin
 
