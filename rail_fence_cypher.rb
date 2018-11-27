@@ -40,12 +40,11 @@ end
 def rail_decode(s,rail_count)
   phrase = s.dup
   lines = find_lines(phrase,rail_count)
-  assemble_lines(lines,rail_count)
+  assemble_lines(lines)
 end
 
-def assemble_lines(lines,rail_count)
+def assemble_lines(lines)
   decoded_s = ''
-  size_of_middle = rail_count - 2
   lines[:first_line].size.times do |i|
     decoded_s += lines[:first_line].slice!(0)
     decoded_s += slice_mid_lines(lines[:middle_lines])
