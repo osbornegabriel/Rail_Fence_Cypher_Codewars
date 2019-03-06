@@ -1,6 +1,6 @@
 # Rail_Fence_Cypher_Codewars
 
-* link to original challenge:* <https://www.codewars.com/kata/rail-fence-cipher-encoding-and-decoding/train/ruby>
+*link to original challenge:* <https://www.codewars.com/kata/rail-fence-cipher-encoding-and-decoding/train/ruby>
 
 Create two functions to encode and then decode a string using the Rail Fence Cipher.
 
